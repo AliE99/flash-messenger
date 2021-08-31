@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flash_messenger/screens/login_screen.dart';
 import 'package:flash_messenger/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     controller = AnimationController(
       vsync: this,
       duration: Duration(
-        seconds: 1,
+        seconds: 3,
       ),
     );
 
@@ -30,8 +31,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
     controller.addListener(() {
       setState(() {});
-      print(controller.value);
     });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -53,11 +59,17 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     height: 60,
                   ),
                 ),
-                Text(
-                  'Flash Messenger',
+                DefaultTextStyle(
                   style: TextStyle(
                     fontSize: 35.0,
                     fontWeight: FontWeight.w900,
+                    color: Colors.black87,
+                  ),
+                  child: AnimatedTextKit(
+                    repeatForever: true,
+                    animatedTexts: [
+                      TypewriterAnimatedText('Flash Messenger'),
+                    ],
                   ),
                 ),
               ],
