@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "474401312770",
+    "project_id": "flash-messenger-9da2c",
+    "storage_bucket": "flash-messenger-9da2c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:474401312770:android:dca21b6d1f128679e2d71b",
+        "android_client_info": {
+          "package_name": "com.example.flash_messenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474401312770-7a9lvqdv1i6hh37ql6es5ga84gtqk38b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGBpc2lJRRYQOrxAADZNJkgsfnFSz_xR0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "474401312770-7a9lvqdv1i6hh37ql6es5ga84gtqk38b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
