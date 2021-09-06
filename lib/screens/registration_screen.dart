@@ -74,6 +74,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           email: email, password: password);
                       Navigator.pushNamed(context, ChatScreen.id);
                     } catch (e) {
+                      //Todo: Use alert for these errors
                       print('Error: $e');
                     }
                   },

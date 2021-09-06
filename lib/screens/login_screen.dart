@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flash_messenger/constants.dart';
+import 'package:flash_messenger/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -8,6 +10,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late String email;
+  late String password;
+  final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,8 +35,10 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 48.0,
             ),
             TextField(
+              textAlign: TextAlign.center,
+              keyboardType: TextInputType.emailAddress,
               onChanged: (value) {
-                //Do something with the user input.
+                email = value;
               },
               style: TextStyle(color: Colors.black),
               decoration: kTextFieldDecoration,
@@ -39,8 +47,10 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 8.0,
             ),
             TextField(
+              textAlign: TextAlign.center,
+              obscureText: true,
               onChanged: (value) {
-                //Do something with the user input.
+                password = value;
               },
               style: TextStyle(color: Colors.black),
               decoration: kTextFieldDecoration.copyWith(
@@ -57,8 +67,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.all(Radius.circular(30.0)),
                 elevation: 5.0,
                 child: MaterialButton(
-                  onPressed: () {
-                    //Implement login functionality.
+                  onPressed: () async {
+                    try {
+                      await _auth.signInWithEmailAndPassword(
+                          email: email, password: password);
+                      Navigator.pushNamed(context, ChatScreen.id);
+                    } catch (e) {
+                      //Todo: Use alert for these errors
+                      print('Error: $e');
+                    }
                   },
                   minWidth: 200.0,
                   height: 42.0,
