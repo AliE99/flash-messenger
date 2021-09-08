@@ -31,7 +31,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void getMessages() async {
     await _firestore
-        .collection('message')
+        .collection('messages')
         .get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
@@ -41,7 +41,7 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   void messageStream() async {
-    await for (var snapshot in _firestore.collection('message').snapshots()) {
+    await for (var snapshot in _firestore.collection('messages').snapshots()) {
       for (var message in snapshot.docs) {
         print(message.data());
       }
@@ -97,7 +97,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       messageTextEditingController.clear();
 
                       _firestore
-                          .collection('message')
+                          .collection('messages')
                           .add({
                             'text': messageText,
                             'sender': loggedInUser.email,
@@ -124,7 +124,7 @@ class MessageStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: _firestore.collection('message').snapshots(),
+      stream: _firestore.collection('messages').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(
@@ -149,6 +149,7 @@ class MessageStream extends StatelessWidget {
         }
         return Expanded(
           child: ListView(
+            reverse: true,
             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
             children: messageBubbles,
           ),
